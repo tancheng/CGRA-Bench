@@ -1,0 +1,33 @@
+digraph "DFG for'fir' function" {
+	Node0phi[shape=circle, label="Φ"];
+	Node1phi[shape=circle, label="Φ"];
+	Node2getelementptr[shape=circle, label="+"];
+	Node3load[shape=circle, label="ld"];
+	Node4getelementptr[shape=circle, label="+"];
+	Node5load[shape=circle, label="ld"];
+	Node6fmul[shape=circle, label="×"];
+	Node7fadd[shape=circle, label="+"];
+	Node8add[shape=circle, label="+"];
+	Node9icmp[shape=circle, label="eq"];
+	Node10br[shape=circle, label="br"];
+	Node11br[shape=circle, label="br"];
+	Node12store[shape=circle, label="st"];
+edge [color=black]
+	Node0phi -> Node2getelementptr
+	Node2getelementptr -> Node3load
+	Node0phi -> Node4getelementptr
+	Node4getelementptr -> Node5load
+	Node3load -> Node6fmul
+	Node5load -> Node6fmul
+	Node1phi -> Node7fadd
+	Node6fmul -> Node7fadd
+	Node0phi -> Node8add
+	Node8add -> Node9icmp
+	Node9icmp -> Node10br
+	Node9icmp -> Node11br
+	Node8add -> Node10br
+	Node10br -> Node0phi
+	Node7fadd -> Node11br
+	Node11br -> Node1phi
+	Node11br -> Node12store
+}

@@ -1,0 +1,70 @@
+digraph "DFG for'fft' function" {
+	Node0phi[shape=circle, label="Φ"];
+	Node1add[shape=circle, label="Φ"];
+	Node2getelementptr[shape=circle, label="+"];
+	Node4load[shape=circle, label="ld"];
+	Node5fmul[shape=circle, label="×"];
+	Node6getelementptr[shape=circle, label="+"];
+	Node8load[shape=circle, label="ld"];
+	Node9fmul[shape=circle, label="×"];
+	Node10fsub[shape=circle, label="-"];
+	Node11fmul[shape=circle, label="×"];
+	Node12fmul[shape=circle, label="×"];
+	Node13fadd[shape=circle, label="+"];
+	Node14add[shape=circle, label="+"];
+	Node15getelementptr[shape=circle, label="+"];
+	Node17load[shape=circle, label="ld"];
+	Node18fsub[shape=circle, label="-"];
+	Node20store[shape=circle, label="st"];
+	Node23fadd[shape=circle, label="+"];
+	Node25store[shape=circle, label="st"];
+	Node26getelementptr[shape=circle, label="+"];
+	Node28load[shape=circle, label="ld"];
+	Node29fsub[shape=circle, label="-"];
+	Node31store[shape=circle, label="st"];
+	Node34fadd[shape=circle, label="+"];
+	Node36store[shape=circle, label="st"];
+	Node37add[shape=circle, label="+"];
+	Node38icmp[shape=circle, label="eq"];
+	Node39br[shape=circle, label="br"];
+edge [color=black]
+	Node0phi -> Node1add
+	Node1add -> Node2getelementptr
+	Node4load -> Node5fmul
+	Node1add -> Node6getelementptr
+	Node8load -> Node9fmul
+	Node5fmul -> Node10fsub
+	Node9fmul -> Node10fsub
+	Node4load -> Node11fmul
+	Node8load -> Node12fmul
+	Node11fmul -> Node13fadd
+	Node12fmul -> Node13fadd
+	Node0phi -> Node14add
+	Node14add -> Node15getelementptr
+	Node17load -> Node18fsub
+	Node10fsub -> Node18fsub
+	Node18fsub -> Node20store
+	Node10fsub -> Node23fadd
+	Node23fadd -> Node25store
+	Node14add -> Node26getelementptr
+	Node28load -> Node29fsub
+	Node13fadd -> Node29fsub
+	Node29fsub -> Node31store
+	Node13fadd -> Node34fadd
+	Node34fadd -> Node36store
+	Node0phi -> Node37add
+	Node37add -> Node38icmp
+	Node38icmp -> Node39br
+	Node37add -> Node39br
+	Node39br -> Node0phi
+	Node2getelementptr -> Node4load
+	Node6getelementptr -> Node8load
+	Node15getelementptr -> Node17load
+	Node2getelementptr -> Node20store
+	Node15getelementptr -> Node25store
+	Node26getelementptr -> Node28load
+	Node6getelementptr -> Node31store
+	Node26getelementptr -> Node36store
+	Node17load -> Node23fadd
+	Node28load -> Node34fadd
+}

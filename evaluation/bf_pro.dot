@@ -1,0 +1,79 @@
+digraph "DFG for'BF_encrypt' function" {
+	Node0phi[shape=circle, label="Φ"];
+	Node1phi[shape=circle, label="Φ"];
+	Node2phi[shape=circle, label="Φ"];
+	Node3getelementptr[shape=circle, label="+"];
+	Node4load[shape=circle, label="ld"];
+	Node5xor[shape=circle, label="xor"];
+	Node6lshr[shape=circle, label=">>"];
+	Node7getelementptr[shape=circle, label="+"];
+	Node8load[shape=circle, label="ld"];
+	Node9lshr[shape=circle, label=">>"];
+	Node10and[shape=circle, label="&"];
+	Node11or[shape=circle, label="or"];
+	Node12getelementptr[shape=circle, label="+"];
+	Node13load[shape=circle, label="ld"];
+	Node14add[shape=circle, label="+"];
+	Node15lshr[shape=circle, label=">>"];
+	Node16and[shape=circle, label="&"];
+	Node17or[shape=circle, label="or"];
+	Node18getelementptr[shape=circle, label="+"];
+	Node19load[shape=circle, label="ld"];
+	Node20xor[shape=circle, label="xor"];
+	Node21and[shape=circle, label="&"];
+	Node22or[shape=circle, label="or"];
+	Node23getelementptr[shape=circle, label="+"];
+	Node24load[shape=circle, label="ld"];
+	Node25add[shape=circle, label="+"];
+	Node26and[shape=circle, label="&"];
+	Node27xor[shape=circle, label="xor"];
+	Node28add[shape=circle, label="+"];
+	Node29icmp[shape=circle, label="eq"];
+	Node30br[shape=circle, label="br"];
+	Node31br[shape=circle, label="br"];
+	Node32br[shape=circle, label="br"];
+	Node33store[shape=circle, label="st"];
+edge [color=black]
+	Node0phi -> Node3getelementptr
+	Node3getelementptr -> Node4load
+	Node4load -> Node5xor
+	Node2phi -> Node5xor
+	Node1phi -> Node6lshr
+	Node6lshr -> Node7getelementptr
+	Node7getelementptr -> Node8load
+	Node1phi -> Node9lshr
+	Node9lshr -> Node10and
+	Node10and -> Node11or
+	Node11or -> Node12getelementptr
+	Node12getelementptr -> Node13load
+	Node13load -> Node14add
+	Node8load -> Node14add
+	Node1phi -> Node15lshr
+	Node15lshr -> Node16and
+	Node16and -> Node17or
+	Node17or -> Node18getelementptr
+	Node18getelementptr -> Node19load
+	Node14add -> Node20xor
+	Node19load -> Node20xor
+	Node1phi -> Node21and
+	Node21and -> Node22or
+	Node22or -> Node23getelementptr
+	Node23getelementptr -> Node24load
+	Node20xor -> Node25add
+	Node24load -> Node25add
+	Node25add -> Node26and
+	Node5xor -> Node27xor
+	Node26and -> Node27xor
+	Node0phi -> Node28add
+	Node28add -> Node29icmp
+	Node29icmp -> Node30br
+	Node29icmp -> Node31br
+	Node29icmp -> Node32br
+	Node28add -> Node30br
+	Node30br -> Node0phi
+	Node27xor -> Node31br
+	Node31br -> Node1phi
+	Node1phi -> Node32br
+	Node32br -> Node2phi
+	Node31br -> Node33store
+}

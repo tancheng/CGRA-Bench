@@ -1,0 +1,63 @@
+digraph "DFG for'susan_smoothing' function" {
+	Node0phi[shape=circle, label="Φ"];
+	Node1phi[shape=circle, label="Φ"];
+	Node2phi[shape=circle, label="Φ"];
+	Node3phi[shape=circle, label="Φ"];
+	Node4phi[shape=circle, label="Φ"];
+	Node5getelementptr[shape=circle, label="+"];
+	Node6load[shape=circle, label="ld"];
+	Node8add[shape=circle, label="+"];
+	Node9getelementptr[shape=circle, label="+"];
+	Node10load[shape=circle, label="ld"];
+	Node13sub[shape=circle, label="-"];
+	Node14getelementptr[shape=circle, label="+"];
+	Node15load[shape=circle, label="ld"];
+	Node17mul[shape=circle, label="×"];
+	Node18add[shape=circle, label="+"];
+	Node19mul[shape=circle, label="×"];
+	Node20add[shape=circle, label="+"];
+	Node21add[shape=circle, label="+"];
+	Node22icmp[shape=circle, label="eq"];
+	Node23br[shape=circle, label="br"];
+	Node24br[shape=circle, label="br"];
+	Node25br[shape=circle, label="br"];
+	Node26br[shape=circle, label="br"];
+	Node27br[shape=circle, label="br"];
+	Node28store[shape=circle, label="st"];
+edge [color=black]
+	Node2phi -> Node5getelementptr
+	Node2phi -> Node6load
+	Node6load -> Node8add
+	Node0phi -> Node8add
+	Node1phi -> Node9getelementptr
+	Node1phi -> Node10load
+	Node10load -> Node17mul
+	Node8add -> Node13sub
+	Node13sub -> Node14getelementptr
+	Node14getelementptr -> Node15load
+	Node15load -> Node17mul
+	Node17mul -> Node18add
+	Node3phi -> Node18add
+	Node17mul -> Node19mul
+	Node8add -> Node19mul
+	Node19mul -> Node20add
+	Node0phi -> Node20add
+	Node4phi -> Node21add
+	Node4phi -> Node22icmp
+	Node22icmp -> Node23br
+	Node22icmp -> Node24br
+	Node22icmp -> Node25br
+	Node22icmp -> Node26br
+	Node22icmp -> Node27br
+	Node20add -> Node23br
+	Node23br -> Node0phi
+	Node9getelementptr -> Node24br
+	Node24br -> Node1phi
+	Node5getelementptr -> Node25br
+	Node25br -> Node2phi
+	Node18add -> Node26br
+	Node26br -> Node3phi
+	Node21add -> Node27br
+	Node27br -> Node4phi
+	Node23br -> Node28store
+}

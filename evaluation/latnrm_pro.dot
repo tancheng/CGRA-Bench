@@ -1,0 +1,64 @@
+digraph "DFG for'latnrm' function" {
+	Node0phi[shape=circle, label="Φ"];
+	Node1phi[shape=circle, label="Φ"];
+	Node2phi[shape=circle, label="Φ"];
+	Node3phi[shape=circle, label="Φ"];
+	Node4shl[shape=circle, label="<<"];
+	Node5getelementptr[shape=circle, label="+"];
+	Node6load[shape=circle, label="ld"];
+	Node7getelementptr[shape=circle, label="+"];
+	Node8load[shape=circle, label= "ld"];
+	Node9store[shape=circle, label="st"];
+	Node10fmul[shape=circle, label="×"];
+	Node11fmul[shape=circle, label="×"];
+	Node12fsub[shape=circle, label="-"];
+	Node13fmul[shape=circle, label="×"];
+	Node14fmul[shape=circle, label="×"];
+	Node15fadd[shape=circle, label="+"];
+	Node16or[shape=circle, label="or"];
+	Node17getelementptr[shape=circle, label="+"];
+	Node18add[shape=circle, label="+"];
+	Node19load[shape=circle, label="ld"];
+	Node20icmp[shape=circle, label="eq"];
+	Node21br[shape=circle, label="br"];
+	Node22br[shape=circle, label="br"];
+	Node23br[shape=circle, label="br"];
+	Node24br[shape=circle, label="br"];
+edge [color=black]
+	Node0phi -> Node4shl
+	Node4shl -> Node5getelementptr
+	Node5getelementptr -> Node6load
+	Node0phi -> Node7getelementptr
+	Node7getelementptr -> Node8load
+	Node3phi -> Node9store
+	Node7getelementptr -> Node9store
+	Node2phi -> Node10fmul
+	Node1phi -> Node10fmul
+	Node6load -> Node11fmul
+	Node8load -> Node11fmul
+	Node10fmul -> Node12fsub
+	Node11fmul -> Node12fsub
+	Node1phi -> Node13fmul
+	Node8load -> Node13fmul
+	Node2phi -> Node14fmul
+	Node6load -> Node14fmul
+	Node14fmul -> Node15fadd
+	Node13fmul -> Node15fadd
+	Node4shl -> Node16or
+	Node16or -> Node17getelementptr
+	Node0phi -> Node18add
+	Node17getelementptr -> Node19load
+	Node18add -> Node20icmp
+	Node20icmp -> Node21br
+	Node20icmp -> Node22br
+	Node20icmp -> Node23br
+	Node20icmp -> Node24br
+	Node18add -> Node21br
+	Node21br -> Node0phi
+	Node19load -> Node22br
+	Node22br -> Node1phi
+	Node12fsub -> Node23br
+	Node23br -> Node2phi
+	Node15fadd -> Node24br
+	Node24br -> Node3phi
+}
