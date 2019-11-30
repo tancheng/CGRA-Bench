@@ -1,0 +1,40 @@
+digraph "DFG for'main' function" {
+	Node0x7f9167e04138[shape=record, label="  %23 = phi float [ %22, %17 ], [ %27, %._crit_edge ]"];
+	Node0x7f9167e04d88[shape=record, label="  %indvars.iv.next.i10 = phi i64 [ 2, %17 ], [ %indvars.iv.next.i, %._crit_edge ]"];
+	Node0x7f9167e04e28[shape=record, label="  %indvars.iv.i9 = phi i64 [ 1, %17 ], [ %indvars.iv.next.i10, %._crit_edge ]"];
+	Node0x7f9167e04f08[shape=record, label="  %.phi.trans.insert = getelementptr inbounds [16 x float], [16 x float]* @coefficient, i64 0, i64 %indvars.iv.i9"];
+	Node0x7f9167e04f78[shape=record, label="  %.pre = load float, float* %.phi.trans.insert, align 4, !tbaa !2"];
+	Node0x7f9167e04ff0[shape=record, label="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.next.i10, 1"];
+	Node0x7f9167e05078[shape=record, label="  %24 = getelementptr inbounds [16 x float], [16 x float]* @internal_state, i64 0, i64 %indvars.iv.next.i"];
+	Node0x7f9167e050e8[shape=record, label="  %25 = load float, float* %24, align 4, !tbaa !2"];
+	Node0x7f9167e05160[shape=record, label="  %26 = fmul float %25, %.pre"];
+	Node0x7f9167e051d0[shape=record, label="  %27 = fadd float %23, %26"];
+	Node0x7f9167e05240[shape=record, label="  %exitcond.i = icmp eq i64 %indvars.iv.next.i, 8"];
+	Node0x7f9167e052c8[shape=record, label="  br i1 %exitcond.i, label %latnrm.exit, label %._crit_edge"];
+	Node0x7f9167e04138 -> Node0x7f9167e04d88
+	Node0x7f9167e04d88 -> Node0x7f9167e04e28
+	Node0x7f9167e04e28 -> Node0x7f9167e04f08
+	Node0x7f9167e04f08 -> Node0x7f9167e04f78
+	Node0x7f9167e04f78 -> Node0x7f9167e04ff0
+	Node0x7f9167e04ff0 -> Node0x7f9167e05078
+	Node0x7f9167e05078 -> Node0x7f9167e050e8
+	Node0x7f9167e050e8 -> Node0x7f9167e05160
+	Node0x7f9167e05160 -> Node0x7f9167e051d0
+	Node0x7f9167e051d0 -> Node0x7f9167e05240
+	Node0x7f9167e05240 -> Node0x7f9167e052c8
+edge [color=red]
+	Node0x7f9167e051d0 -> Node0x7f9167e04138
+	Node0x7f9167e04ff0 -> Node0x7f9167e04d88
+	Node0x7f9167e04d88 -> Node0x7f9167e04e28
+	Node0x7f9167e04e28 -> Node0x7f9167e04f08
+	Node0x7f9167e04f08 -> Node0x7f9167e04f78
+	Node0x7f9167e04d88 -> Node0x7f9167e04ff0
+	Node0x7f9167e04ff0 -> Node0x7f9167e05078
+	Node0x7f9167e05078 -> Node0x7f9167e050e8
+	Node0x7f9167e050e8 -> Node0x7f9167e05160
+	Node0x7f9167e04f78 -> Node0x7f9167e05160
+	Node0x7f9167e04138 -> Node0x7f9167e051d0
+	Node0x7f9167e05160 -> Node0x7f9167e051d0
+	Node0x7f9167e04ff0 -> Node0x7f9167e05240
+	Node0x7f9167e05240 -> Node0x7f9167e052c8
+}
