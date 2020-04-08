@@ -34,7 +34,6 @@ void fir(float input[], float output[], float coefficient[])
   int i;
   float sum;
   sum = 999.0;
-
   for (i = 0; i < NTAPS; ++i) {
     sum += input[i] * coefficient[i];
   }

@@ -1,2 +1,2 @@
 ./compile.sh
-opt -load ../../llvm-pass-cgra/build/cgra/libcgraPass.so -cgraPass latnrm.bc
+opt -load ../../llvm-pass-mapper/build/mapper/libmapperPass.so -mapperPass latnrm.bc

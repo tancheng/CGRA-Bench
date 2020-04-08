@@ -64,14 +64,6 @@
     "out"        : [[11]]
   },
   {
-    "fu"         : "Alu",
-    "id"         : 8,
-    "opt"        : "OPT_ADD",
-    "in_const"   : [0],
-    "in"         : [0],
-    "out"        : [[9,10]]
-  },
-  {
     "fu"         : "Comp",
     "id"         : 9,
     "opt"        : "OPT_EQ",
