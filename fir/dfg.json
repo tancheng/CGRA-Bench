@@ -2,89 +2,109 @@
   {
     "fu"         : "Phi",
     "id"         : 0,
-    "opt"        : "OPT_PHI",
+    "org_opt"    : "phi",
+    "JSON_opt"   : "OPT_PHI",
     "in_const"   : [0],
-    "in"         : [10],
-    "out"        : [[2,4,8]]
+    "pre"         : [10],
+    "succ"       : [[2,4,8]]
   },
   {
     "fu"         : "Phi",
     "id"         : 1,
-    "opt"        : "OPT_PHI",
+    "org_opt"    : "phi",
+    "JSON_opt"   : "OPT_PHI",
     "in_const"   : [0],
-    "in"         : [11],
-    "out"        : [[7]]
+    "pre"         : [11],
+    "succ"       : [[7]]
   },
   {
     "fu"         : "Alu",
     "id"         : 2,
-    "opt"        : "OPT_ADD",
+    "org_opt"    : "getelementptr",
+    "JSON_opt"   : "OPT_ADD",
     "in_const"   : [0],
-    "in"         : [0],
-    "out"        : [[3]]
+    "pre"         : [0],
+    "succ"       : [[3]]
   },
   {
     "fu"         : "MemUnit",
     "id"         : 3,
-    "opt"        : "OPT_LD",
+    "org_opt"    : "load",
+    "JSON_opt"   : "OPT_LD",
     "in_const"   : [],
-    "in"         : [2],
-    "out"        : [[6]]
+    "pre"         : [2],
+    "succ"       : [[6]]
   },
   {
     "fu"         : "Alu",
     "id"         : 4,
-    "opt"        : "OPT_ADD",
+    "org_opt"    : "getelementptr",
+    "JSON_opt"   : "OPT_ADD",
     "in_const"   : [0],
-    "in"         : [0],
-    "out"        : [[5]]
+    "pre"         : [0],
+    "succ"       : [[5]]
   },
   {
     "fu"         : "MemUnit",
     "id"         : 5,
-    "opt"        : "OPT_LD",
+    "org_opt"    : "load",
+    "JSON_opt"   : "OPT_LD",
     "in_const"   : [],
-    "in"         : [4],
-    "out"        : [[6]]
+    "pre"         : [4],
+    "succ"       : [[6]]
   },
   {
     "fu"         : "Mul",
     "id"         : 6,
-    "opt"        : "OPT_MUL",
+    "org_opt"    : "fmul",
+    "JSON_opt"   : "OPT_MUL",
     "in_const"   : [],
-    "in"         : [3,5],
-    "out"        : [[7]]
+    "pre"         : [3,5],
+    "succ"       : [[7]]
   },
   {
     "fu"         : "Alu",
     "id"         : 7,
-    "opt"        : "OPT_ADD",
+    "org_opt"    : "fadd",
+    "JSON_opt"   : "OPT_ADD",
     "in_const"   : [],
-    "in"         : [1,6],
-    "out"        : [[11]]
+    "pre"         : [1,6],
+    "succ"       : [[11]]
+  },
+  {
+    "fu"         : "Alu",
+    "id"         : 8,
+    "org_opt"    : "add",
+    "JSON_opt"   : "OPT_ADD",
+    "in_const"   : [0],
+    "pre"         : [0],
+    "succ"       : [[9,10]]
   },
   {
     "fu"         : "Comp",
     "id"         : 9,
-    "opt"        : "OPT_EQ",
+    "org_opt"    : "icmp",
+    "JSON_opt"   : "OPT_EQ",
     "in_const"   : [0],
-    "in"         : [8],
-    "out"        : [[10,11]]
+    "pre"         : [8],
+    "succ"       : [[10,11]]
   },
   {
     "fu"         : "Branch",
     "id"         : 10,
-    "opt"        : "OPT_BRH",
+    "org_opt"    : "br",
+    "JSON_opt"   : "OPT_BRH",
     "in_const"   : [],
-    "in"         : [8,9],
-    "out"        : [[0]]
+    "pre"         : [8,9],
+    "succ"       : [[0]]
   },
   {
     "fu"         : "Branch",
     "id"         : 11,
-    "opt"        : "OPT_BRH",
+    "org_opt"    : "br",
+    "JSON_opt"   : "OPT_BRH",
     "in_const"   : [],
-    "in"         : [7,9],
-    "out"        : [[1]]
+    "pre"         : [7,9],
+    "succ"       : [[1]]
   }
 ]
