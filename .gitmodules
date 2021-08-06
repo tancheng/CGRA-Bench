@@ -1,0 +1,3 @@
+[submodule "Streaming-Bench"]
+	path = Streaming-Bench
+	url = https://github.com/tancheng/Streaming-Bench
