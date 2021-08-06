@@ -1,1 +1,1 @@
-opt -load ../../llvm-pass-mapper/build/mapper/libmapperPass.so -mapperPass adpcm.bc
+opt -load ../../cgra-mapper/build/mapper/libmapperPass.so -mapperPass adpcm.bc
