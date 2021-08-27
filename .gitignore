@@ -1,6 +1,5 @@
 *.backup
 .DS_Store
-*.json
 *.bc
 *.dot
 *.png

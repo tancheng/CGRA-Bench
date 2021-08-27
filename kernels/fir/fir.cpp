@@ -14,7 +14,7 @@ float coefficients[NTAPS] = {0.25, 1.50, 3.75, -2.25, 0.50, 0.75, -3.00, 1.25,
 
 void fir(float input[], float output[], float coefficient[]);
 
-main()
+int main()
 {
 
 //  input_dsp (input, NTAPS, 0);
@@ -24,6 +24,7 @@ main()
 //  output_dsp (input, NTAPS, 0);
 //  output_dsp (coefficients, NTAPS, 0);
 //  output_dsp (output, NTAPS, 0);
+  return 0;
 }
 
 void fir(float input[], float output[], float coefficient[])

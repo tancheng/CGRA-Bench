@@ -5,7 +5,7 @@
     "org_opt"    : "phi",
     "JSON_opt"   : "OPT_PHI",
     "in_const"   : [0],
-    "pre"         : [10],
+    "pre"         : [8,10],
     "succ"       : [[2,4,8]]
   },
   {
@@ -14,7 +14,7 @@
     "org_opt"    : "phi",
     "JSON_opt"   : "OPT_PHI",
     "in_const"   : [0],
-    "pre"         : [11],
+    "pre"         : [7,10],
     "succ"       : [[7]]
   },
   {
@@ -69,7 +69,7 @@
     "JSON_opt"   : "OPT_ADD",
     "in_const"   : [],
     "pre"         : [1,6],
-    "succ"       : [[11]]
+    "succ"       : [[1]]
   },
   {
     "fu"         : "Alu",
@@ -78,7 +78,7 @@
     "JSON_opt"   : "OPT_ADD",
     "in_const"   : [0],
     "pre"         : [0],
-    "succ"       : [[9,10]]
+    "succ"       : [[0,9]]
   },
   {
     "fu"         : "Comp",
@@ -87,7 +87,7 @@
     "JSON_opt"   : "OPT_EQ",
     "in_const"   : [0],
     "pre"         : [8],
-    "succ"       : [[10,11]]
+    "succ"       : [[10]]
   },
   {
     "fu"         : "Branch",
@@ -95,16 +95,7 @@
     "org_opt"    : "br",
     "JSON_opt"   : "OPT_BRH",
     "in_const"   : [],
-    "pre"         : [8,9],
-    "succ"       : [[0]]
-  },
-  {
-    "fu"         : "Branch",
-    "id"         : 11,
-    "org_opt"    : "br",
-    "JSON_opt"   : "OPT_BRH",
-    "in_const"   : [],
-    "pre"         : [7,9],
-    "succ"       : [[1]]
+    "pre"         : [9],
+    "succ"       : [[0,1]]
   }
 ]
