@@ -21,7 +21,7 @@
     "fu"         : "Alu",
     "id"         : 2,
     "org_opt"    : "getelementptr",
-    "JSON_opt"   : "OPT_ADD",
+    "JSON_opt"   : "OPT_ADD_CONST",
     "in_const"   : [0],
     "pre"         : [0],
     "succ"       : [[3]]
@@ -30,7 +30,7 @@
     "fu"         : "Alu",
     "id"         : 4,
     "org_opt"    : "getelementptr",
-    "JSON_opt"   : "OPT_ADD",
+    "JSON_opt"   : "OPT_ADD_CONST",
     "in_const"   : [0],
     "pre"         : [0],
     "succ"       : [[5]]
@@ -39,7 +39,7 @@
     "fu"         : "Alu",
     "id"         : 8,
     "org_opt"    : "add",
-    "JSON_opt"   : "OPT_ADD",
+    "JSON_opt"   : "OPT_ADD_CONST",
     "in_const"   : [0],
     "pre"         : [0],
     "succ"       : [[0,9]]
@@ -66,7 +66,7 @@
     "fu"         : "Comp",
     "id"         : 9,
     "org_opt"    : "icmp",
-    "JSON_opt"   : "OPT_EQ",
+    "JSON_opt"   : "OPT_EQ_CONST",
     "in_const"   : [0],
     "pre"         : [8],
     "succ"       : [[10]]
