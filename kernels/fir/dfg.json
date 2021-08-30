@@ -3,7 +3,7 @@
     "fu"         : "Phi",
     "id"         : 0,
     "org_opt"    : "phi",
-    "JSON_opt"   : "OPT_PHI",
+    "JSON_opt"   : "OPT_PHI_CONST",
     "in_const"   : [0],
     "pre"         : [8,10],
     "succ"       : [[2,4,8]]
@@ -12,7 +12,7 @@
     "fu"         : "Phi",
     "id"         : 1,
     "org_opt"    : "phi",
-    "JSON_opt"   : "OPT_PHI",
+    "JSON_opt"   : "OPT_PHI_CONST",
     "in_const"   : [0],
     "pre"         : [7,10],
     "succ"       : [[7]]
