@@ -27,15 +27,6 @@
     "succ"       : [[3]]
   },
   {
-    "fu"         : "MemUnit",
-    "id"         : 3,
-    "org_opt"    : "load",
-    "JSON_opt"   : "OPT_LD",
-    "in_const"   : [],
-    "pre"         : [2],
-    "succ"       : [[6]]
-  },
-  {
     "fu"         : "Alu",
     "id"         : 4,
     "org_opt"    : "getelementptr",
@@ -43,33 +34,6 @@
     "in_const"   : [0],
     "pre"         : [0],
     "succ"       : [[5]]
-  },
-  {
-    "fu"         : "MemUnit",
-    "id"         : 5,
-    "org_opt"    : "load",
-    "JSON_opt"   : "OPT_LD",
-    "in_const"   : [],
-    "pre"         : [4],
-    "succ"       : [[6]]
-  },
-  {
-    "fu"         : "Mul",
-    "id"         : 6,
-    "org_opt"    : "fmul",
-    "JSON_opt"   : "OPT_MUL",
-    "in_const"   : [],
-    "pre"         : [3,5],
-    "succ"       : [[7]]
-  },
-  {
-    "fu"         : "Alu",
-    "id"         : 7,
-    "org_opt"    : "fadd",
-    "JSON_opt"   : "OPT_ADD",
-    "in_const"   : [],
-    "pre"         : [1,6],
-    "succ"       : [[1]]
   },
   {
     "fu"         : "Alu",
@@ -81,6 +45,24 @@
     "succ"       : [[0,9]]
   },
   {
+    "fu"         : "MemUnit",
+    "id"         : 3,
+    "org_opt"    : "load",
+    "JSON_opt"   : "OPT_LD",
+    "in_const"   : [],
+    "pre"         : [2],
+    "succ"       : [[6]]
+  },
+  {
+    "fu"         : "MemUnit",
+    "id"         : 5,
+    "org_opt"    : "load",
+    "JSON_opt"   : "OPT_LD",
+    "in_const"   : [],
+    "pre"         : [4],
+    "succ"       : [[6]]
+  },
+  {
     "fu"         : "Comp",
     "id"         : 9,
     "org_opt"    : "icmp",
@@ -90,6 +72,15 @@
     "succ"       : [[10]]
   },
   {
+    "fu"         : "Mul",
+    "id"         : 6,
+    "org_opt"    : "fmul",
+    "JSON_opt"   : "OPT_MUL",
+    "in_const"   : [],
+    "pre"         : [3,5],
+    "succ"       : [[7]]
+  },
+  {
     "fu"         : "Branch",
     "id"         : 10,
     "org_opt"    : "br",
@@ -97,5 +88,14 @@
     "in_const"   : [],
     "pre"         : [9],
     "succ"       : [[0,1]]
+  },
+  {
+    "fu"         : "Alu",
+    "id"         : 7,
+    "org_opt"    : "fadd",
+    "JSON_opt"   : "OPT_ADD",
+    "in_const"   : [],
+    "pre"         : [1,6],
+    "succ"       : [[1]]
   }
 ]
