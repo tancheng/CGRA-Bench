@@ -275,7 +275,7 @@
     "cycle"       : 3,
     "opt"         : "OPT_BRH",
     "predicate"   : 0,
-    "predicate_in": [,4],
+    "predicate_in": [4],
     "out_0"       : "4",
     "out_1"       : "none",
     "out_2"       : "none",
