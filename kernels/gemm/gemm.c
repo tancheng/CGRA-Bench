@@ -76,27 +76,27 @@ void kernel_gemm(int ni, int nj, int nk,
 //B is NKxNJ
 //C is NIxNJ
 //#pragma scop
-//  for (i = 0; i < _PB_NI; i++) {
+  for (i = 0; i < _PB_NI; i++) {
 //    for (j = 0; j < _PB_NJ; j++)
 //	C[i][j] *= beta;
-//    for (k = 0; k < _PB_NK; k++) {
-//       for (j = 0; j < _PB_NJ; j++)
-//	  C[i][j] += alpha * A[i][k] * B[k][j];
-//    }
-//  }
+    for (k = 0; k < _PB_NK; k++) {
+       for (j = 0; j < _PB_NJ; j++)
+	  C[i][j] += alpha * A[i][k] * B[k][j];
+    }
+  }
 //#pragma endscop
 
-  int total = _PB_NI*_PB_NJ*_PB_NK;
-  #pragma clang loop unroll_count(2)
-  for (x = 0; x < total; x++) {
-    i = x / _PB_NK / _PB_NJ;
-    k = (x / _PB_NJ) % _PB_NK;
-    j = x % _PB_NJ;
-    if (k==0) {
-      C[i][j] *= beta;
-    }
-    C[i][j] += alpha * A[i][k] * B[k][j];
-  }
+//  int total = _PB_NI*_PB_NJ*_PB_NK;
+//  //#pragma clang loop unroll_count(2)
+//  for (x = 0; x < total; x++) {
+//    i = x / _PB_NK / _PB_NJ;
+//    k = (x / _PB_NJ) % _PB_NK;
+//    j = x % _PB_NJ;
+//    if (k==0) {
+//      C[i][j] *= beta;
+//    }
+//    C[i][j] += alpha * A[i][k] * B[k][j];
+//  }
 }
 
 

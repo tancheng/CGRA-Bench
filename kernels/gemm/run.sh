@@ -1,1 +1,1 @@
-opt -load ../../build/mapper/libmapperPass.so -mapperPass gemm.bc
+opt-12 -load ../../../cgra-mapper/build/src/libmapperPass.so -mapperPass gemm.bc
