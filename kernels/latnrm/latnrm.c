@@ -12,24 +12,25 @@ float coefficient[16]={ 0.25,1.5,3.75,-2.25,0.5,0.75,-3.0,1.25,
 float internal_state[16]={ 0.25,1.5,3.75,-2.25,0.5,0.75,-3.0,1.25,
                         0.2, 0.22 , 2.3 , 2.1, 0.48, 0.28, -2.4 ,5.6};
 
-void latnrm(float input, float *output, float coefficient[16],
-                   float internal_state[16]);
+void kernel(float input, float *output, float coefficient[16],
+            float internal_state[16]);
 
-main()
+int main()
 {
 
   input_dsp(&input,1,0);
 
-  latnrm(input, &output, coefficient, internal_state);
+  kernel(input, &output, coefficient, internal_state);
 
   output_dsp(&input,1,0);
   output_dsp(coefficient,16,0);
   output_dsp(internal_state,16,0);
   output_dsp(&output,1,0);
+  return 0;
 }
 
-void latnrm(float input, float *output, float coefficient[16],
-              float internal_state[16])
+void kernel(float input, float *output, float coefficient[16],
+            float internal_state[16])
 /*    input:           input sample array */
 /*    output:          output sample array */
 /*    coefficient:     coefficient array */

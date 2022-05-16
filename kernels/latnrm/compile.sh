@@ -1,2 +1,2 @@
-clang-3.8 -emit-llvm -O3 -fno-unroll-loops -o latnrm.bc -c latnrm_8_1.c
-#llvm-dis latnrm.bc -o latnrm.ll
+clang-12 -emit-llvm -O3 -fno-unroll-loops -o kernel.bc -c latnrm.c
+llvm-dis-12 kernel.bc -o kernel.ll

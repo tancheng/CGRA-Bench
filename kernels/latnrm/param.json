@@ -2,7 +2,7 @@
   "kernel"              : "kernel",
   "targetFunction"      : false,
   "targetNested"        : false,
-  "targetLoopsID"       : [0],
+  "targetLoopsID"       : [1],
   "doCGRAMapping"       : false,
   "row"                 : 4,
   "column"              : 4,
