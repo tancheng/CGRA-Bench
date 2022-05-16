@@ -1,9 +1,9 @@
 {
-  "kernel"              : "_Z3firPfS_S_",
-  "targetFunction"      : true,
-  "targetNested"        : true,
-  "targetLoopsID"       : [0, 1],
-  "doCGRAMapping"       : true,
+  "kernel"              : "kernel",
+  "targetFunction"      : false,
+  "targetNested"        : false,
+  "targetLoopsID"       : [0],
+  "doCGRAMapping"       : false,
   "row"                 : 4,
   "column"              : 4,
   "heterogeneity"       : false,
@@ -11,6 +11,7 @@
   "heuristicMapping"    : false,
   "bypassConstraint"    : 4,
   "isStaticElasticCGRA" : false,
+  "precisionAware"      : false,
   "ctrlMemConstraint"   : 200,
   "regConstraint"       : 8
 }

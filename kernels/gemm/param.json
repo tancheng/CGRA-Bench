@@ -1,9 +1,9 @@
 {
-  "kernel"              : "kernel_gemm",
+  "kernel"              : "kernel",
   "targetFunction"      : false,
   "targetNested"        : false,
   "targetLoopsID"       : [0],
-  "doCGRAMapping"       : true,
+  "doCGRAMapping"       : false,
   "row"                 : 4,
   "column"              : 4,
   "heterogeneity"       : false,

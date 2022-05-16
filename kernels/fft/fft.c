@@ -11,10 +11,10 @@ float data_imag[256];
 float coef_real[256];
 float coef_imag[256];
 
-void fft(float data_real[],float data_imag[], float coef_real[],
+void kernel(float data_real[],float data_imag[], float coef_real[],
                  float coef_imag[]);
 
-main()
+int main()
 {
   int i;
   int j=0;
@@ -26,16 +26,17 @@ main()
     coef_real[i] = 2;
     coef_imag[i] = 2;
   }
-  fft(data_real, data_imag, coef_real, coef_imag);
+  kernel(data_real, data_imag, coef_real, coef_imag);
 
   output_dsp (data_real, NPOINTS, 0);
   output_dsp (data_imag, NPOINTS, 0);
   output_dsp (coef_real, NPOINTS, 0);
   output_dsp (coef_imag, NPOINTS, 0);
+  return 0;
 }
 
-void fft(float data_real[],float data_imag[], float coef_real[],
-                 float coef_imag[])
+void kernel(float data_real[],float data_imag[], float coef_real[],
+            float coef_imag[])
 /* data_real:         real data points */
 /* data_imag:         imaginary data points */
 /* coef_real:         real coefficient points */
@@ -55,6 +56,8 @@ void fft(float data_real[],float data_imag[], float coef_real[],
     for (j = 0; j < groupsPerStage; ++j) {
       Wr = coef_real[(1<<i)-1+j];
       Wi = coef_imag[(1<<i)-1+j];
+#pragma clang loop vectorize(enable) vectorize_width(4)
+//#pragma clang loop vectorize(disable)
       for (k = 0; k < buttersPerGroup; ++k) {
         temp_real = Wr * data_real[2*j*buttersPerGroup+buttersPerGroup+k] -
                     Wi * data_imag[2*j*buttersPerGroup+buttersPerGroup+k];
