@@ -1,9 +1,9 @@
 {
   "kernel"              : "_Z3firPfS_S_",
-  "targetFunction"      : true,
-  "targetNested"        : true,
-  "targetLoopsID"       : [0, 1],
-  "doCGRAMapping"       : false,
+  "targetFunction"      : false,
+  "targetNested"        : false,
+  "targetLoopsID"       : [0],
+  "doCGRAMapping"       : true,
   "row"                 : 4,
   "column"              : 4,
   "heterogeneity"       : false,

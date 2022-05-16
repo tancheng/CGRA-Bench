@@ -37,11 +37,11 @@ void fir(float input[], float output[], float coefficient[])
   float sum;
   int* C;
 //#pragma clang loop vectorize(enable) interleave(enable)
-#pragma clang loop vectorize_width(8) interleave(enable)
+//#pragma clang loop vectorize_width(8) interleave(enable)
   for (i = 0; i < NTAPS; ++i) {
-    if (i%8 != 0)
-      sum += input[i] * coefficient[i];
+//    if (i%8 != 0)
+      output[0] += input[i] * coefficient[i];
   }
-  output[0] = sum;
+  // output[0] = sum;
 }
 

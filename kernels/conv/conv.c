@@ -5,7 +5,6 @@
 #include "polybench.h"
 #include "conv.h"
 
-
 /* Array initialization. */
 static
 void init_array(int ni, int nj, int nk,
@@ -53,14 +52,14 @@ void print_array(int ni, int nj,
 
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
-int kernel_gemm(int ni, int nj, int nk,
+int kernel_conv(int ni, int nj, int nk,
 		 DATA_TYPE alpha,
 		 DATA_TYPE beta,
 		 DATA_TYPE POLYBENCH_2D(C,NI,NJ,ni,nj),
 		 DATA_TYPE POLYBENCH_2D(A,NI,NJ,ni,nj),
 		 DATA_TYPE POLYBENCH_2D(B,NI,NJ,ni,nj))
 {
-  int x, i, j, k;
+  int x = 0, i = 0, j = 0, k = 0;
 
 //BLAS PARAMS
 //TRANSA = 'N'
@@ -80,12 +79,13 @@ int kernel_gemm(int ni, int nj, int nk,
 //  }
 //#pragma endscop
 
-  int total = _PB_NI*_PB_NJ;
+  int total = NI * NJ;
   int out = 0;
-  #pragma clang loop unroll_count(4)
+  // #pragma clang loop unroll_count(2)
+  #pragma clang loop vectorize_width(8) interleave(enable)
   for (x = 0; x < total; x++) {
-    i = x / _PB_NJ;
-    j = x % _PB_NJ;
+    i = x / NJ;
+    j = x % NJ;
     out += A[i][j] * B[i][j];
   }
   return out;
@@ -116,7 +116,7 @@ int main(int argc, char** argv)
   polybench_start_instruments;
 
   /* Run kernel. */
-  int out = kernel_gemm (ni, nj, nk,
+  int out = kernel_conv (ni, nj, nk,
 	       alpha, beta,
 	       POLYBENCH_ARRAY(C),
 	       POLYBENCH_ARRAY(A),
