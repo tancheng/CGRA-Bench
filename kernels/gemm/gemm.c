@@ -15,16 +15,12 @@
 /* Array initialization. */
 static
 void init_array(int ni, int nj, int nk,
-		DATA_TYPE *alpha,
-		DATA_TYPE *beta,
 		DATA_TYPE POLYBENCH_2D(C,NI,NJ,ni,nj),
 		DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk),
 		DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj))
 {
   int i, j;
 
-  *alpha = 1.5;
-  *beta = 1.2;
   for (i = 0; i < ni; i++)
     for (j = 0; j < nj; j++)
       C[i][j] = (DATA_TYPE) (i*j % ni) / ni;
@@ -59,9 +55,7 @@ void print_array(int ni, int nj,
 
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
-void kernel_gemm(int ni, int nj, int nk,
-		 DATA_TYPE alpha,
-		 DATA_TYPE beta,
+void kernel(int ni, int nj, int nk,
 		 DATA_TYPE POLYBENCH_2D(C,NI,NJ,ni,nj),
 		 DATA_TYPE POLYBENCH_2D(A,NI,NK,ni,nk),
 		 DATA_TYPE POLYBENCH_2D(B,NK,NJ,nk,nj))
@@ -71,32 +65,30 @@ void kernel_gemm(int ni, int nj, int nk,
 //BLAS PARAMS
 //TRANSA = 'N'
 //TRANSB = 'N'
-// => Form C := alpha*A*B + beta*C,
+// => Form C := A*B + C,
 //A is NIxNK
 //B is NKxNJ
 //C is NIxNJ
 //#pragma scop
   for (i = 0; i < _PB_NI; i++) {
-//    for (j = 0; j < _PB_NJ; j++)
-//	C[i][j] *= beta;
     for (k = 0; k < _PB_NK; k++) {
+       #pragma clang loop vectorize_width(4)
        for (j = 0; j < _PB_NJ; j++)
-	  C[i][j] += alpha * A[i][k] * B[k][j];
+	  C[i][j] += A[i][k] * B[k][j];
     }
   }
 //#pragma endscop
-
-//  int total = _PB_NI*_PB_NJ*_PB_NK;
-//  //#pragma clang loop unroll_count(2)
-//  for (x = 0; x < total; x++) {
-//    i = x / _PB_NK / _PB_NJ;
-//    k = (x / _PB_NJ) % _PB_NK;
-//    j = x % _PB_NJ;
-//    if (k==0) {
-//      C[i][j] *= beta;
-//    }
-//    C[i][j] += alpha * A[i][k] * B[k][j];
-//  }
+/*
+  int total = _PB_NI*_PB_NJ*_PB_NK;
+  //#pragma clang loop unroll_count(2)
+  #pragma clang loop vectorize_width(4)
+  for (x = 0; x < total; x++) {
+    i = x / _PB_NK / _PB_NJ;
+    k = (x / _PB_NJ) % _PB_NK;
+    j = x % _PB_NJ;
+    C[i][j] += A[i][k] * B[k][j];
+  }
+*/
 }
 
 
@@ -108,27 +100,24 @@ int main(int argc, char** argv)
   int nk = NK;
 
   /* Variable declaration/allocation. */
-  DATA_TYPE alpha;
-  DATA_TYPE beta;
   POLYBENCH_2D_ARRAY_DECL(C,DATA_TYPE,NI,NJ,ni,nj);
   POLYBENCH_2D_ARRAY_DECL(A,DATA_TYPE,NI,NK,ni,nk);
   POLYBENCH_2D_ARRAY_DECL(B,DATA_TYPE,NK,NJ,nk,nj);
 
   /* Initialize array(s). */
-  init_array (ni, nj, nk, &alpha, &beta,
-	      POLYBENCH_ARRAY(C),
-	      POLYBENCH_ARRAY(A),
-	      POLYBENCH_ARRAY(B));
+  init_array(ni, nj, nk,
+	     POLYBENCH_ARRAY(C),
+	     POLYBENCH_ARRAY(A),
+	     POLYBENCH_ARRAY(B));
 
   /* Start timer. */
   polybench_start_instruments;
 
   /* Run kernel. */
-  kernel_gemm (ni, nj, nk,
-	       alpha, beta,
-	       POLYBENCH_ARRAY(C),
-	       POLYBENCH_ARRAY(A),
-	       POLYBENCH_ARRAY(B));
+  kernel(ni, nj, nk,
+         POLYBENCH_ARRAY(C),
+         POLYBENCH_ARRAY(A),
+         POLYBENCH_ARRAY(B));
 
   /* Stop and print timer. */
   polybench_stop_instruments;
