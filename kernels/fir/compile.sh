@@ -1,2 +1,4 @@
-clang -emit-llvm -fno-unroll-loops -O3 -o fir.bc -c fir.cpp
-#llvm-dis fir.bc -o fir.ll
+clang-12 -emit-llvm -fno-unroll-loops -O3 -o kernel.bc -c fir.cpp
+opt-12 --loop-unroll --unroll-count=4 kernel.bc -o kernel_unroll.bc
+llvm-dis-12 kernel.bc -o kernel.ll
+llvm-dis-12 kernel_unroll.bc -o kernel_unroll.ll

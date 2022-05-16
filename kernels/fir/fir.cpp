@@ -27,14 +27,14 @@ int main()
   return 0;
 }
 
-void fir(float input[], float output[], float coefficient[])
+void kernel(float input[], float output[], float coefficient[])
 /*   input :           input sample array */
 /*   output:           output sample array */
 /*   coefficient:      coefficient array */
 {
   int i;
-  float sum;
-  sum = 999.0;
+  float sum = 0.0;
+  #pragma clang loop vectorize_width(4)
   for (i = 0; i < NTAPS; ++i) {
     sum += input[i] * coefficient[i];
   }

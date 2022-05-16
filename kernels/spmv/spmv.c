@@ -32,7 +32,7 @@ void kernel(int nnz, int val[], int col[], int row[], int feature[], int output[
   int i = 0;
   int temp;
 
-  for (i = 0; i < SIZE; ++i) {
+  for (i = 0; i < nnz; ++i) {
     temp = val[i] * feature[ col[i] ];
     output[ row[i] ] += temp;
   }
