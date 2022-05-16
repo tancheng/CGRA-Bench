@@ -52,12 +52,12 @@ void print_array(int ni, int nj,
 
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
-int kernel_conv(int ni, int nj, int nk,
-		 DATA_TYPE alpha,
-		 DATA_TYPE beta,
-		 DATA_TYPE POLYBENCH_2D(C,NI,NJ,ni,nj),
-		 DATA_TYPE POLYBENCH_2D(A,NI,NJ,ni,nj),
-		 DATA_TYPE POLYBENCH_2D(B,NI,NJ,ni,nj))
+int kernel(int ni, int nj, int nk,
+	   DATA_TYPE alpha,
+	   DATA_TYPE beta,
+	   DATA_TYPE POLYBENCH_2D(C,NI,NJ,ni,nj),
+	   DATA_TYPE POLYBENCH_2D(A,NI,NJ,ni,nj),
+	   DATA_TYPE POLYBENCH_2D(B,NI,NJ,ni,nj))
 {
   int x = 0, i = 0, j = 0, k = 0;
 
@@ -116,11 +116,11 @@ int main(int argc, char** argv)
   polybench_start_instruments;
 
   /* Run kernel. */
-  int out = kernel_conv (ni, nj, nk,
-	       alpha, beta,
-	       POLYBENCH_ARRAY(C),
-	       POLYBENCH_ARRAY(A),
-	       POLYBENCH_ARRAY(B));
+  int out = kernel(ni, nj, nk,
+	           alpha, beta,
+	           POLYBENCH_ARRAY(C),
+	           POLYBENCH_ARRAY(A),
+	           POLYBENCH_ARRAY(B));
 
   /* Stop and print timer. */
   polybench_stop_instruments;
