@@ -12,14 +12,14 @@ float coefficients[NTAPS] = {0.25, 1.50, 3.75, -2.25, 0.50, 0.75, -3.00, 1.25,
 0.25, 1.50, 3.75, -2.25, 0.50, 0.75, -3.00, 1.25,
 0.25, 1.50, 3.75, -2.25, 0.50, 0.75, -3.00, 1.25};
 
-void fir(float input[], float output[], float coefficient[]);
+void kernel(float input[], float output[], float coefficient[]);
 
 int main()
 {
 
 //  input_dsp (input, NTAPS, 0);
 
-  fir(input, output, coefficients);
+  kernel(input, output, coefficients);
 
 //  output_dsp (input, NTAPS, 0);
 //  output_dsp (coefficients, NTAPS, 0);
