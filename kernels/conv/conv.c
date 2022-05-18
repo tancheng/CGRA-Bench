@@ -64,30 +64,30 @@ int kernel(int ni, int nj, int nk,
 //BLAS PARAMS
 //TRANSA = 'N'
 //TRANSB = 'N'
-// => Form C := alpha*A*B + beta*C,
 //A is NIxNK
 //B is NKxNJ
 //C is NIxNJ
-//#pragma scop
-//  for (i = 0; i < _PB_NI; i++) {
-//    for (j = 0; j < _PB_NJ; j++)
-//	C[i][j] *= beta;
-//    for (k = 0; k < _PB_NK; k++) {
-//       for (j = 0; j < _PB_NJ; j++)
-//	  C[i][j] += alpha * A[i][k] * B[k][j];
-//    }
-//  }
-//#pragma endscop
 
   int total = NI * NJ;
   int out = 0;
-  // #pragma clang loop unroll_count(2)
-  #pragma clang loop vectorize_width(8) interleave(enable)
+  // #pragma clang loop unroll_count(2) vectorize(disable)
+  // #pragma clang loop unroll_count(1) vectorize_width(4)
+  #pragma clang loop vectorize_width(4)
   for (x = 0; x < total; x++) {
     i = x / NJ;
     j = x % NJ;
     out += A[i][j] * B[i][j];
   }
+
+  /*
+  for (i = 0; i < NI; i++) {
+    // #pragma clang loop unroll_count(2) vectorize(disable)
+    #pragma clang loop unroll_count(1) vectorize_width(4)
+    for (j = 0; j < NJ; j++) {
+      out += A[i][j] * B[i][j];
+    }
+  }
+  */
   return out;
 }
 

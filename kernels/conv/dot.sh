@@ -1,1 +1,1 @@
-dot -Tpng kernel_gemm.dot -o conv.png
+dot -Tpng kernel.dot -o kernel.png
