@@ -25,8 +25,8 @@ void init_array(int n,
 
   for (i = 0; i < n; i++)
     {
-      x1[i] = (DATA_TYPE) (i % n) / n;
-      x2[i] = (DATA_TYPE) ((i + 1) % n) / n;
+      x1[i] = (DATA_TYPE)0;
+      x2[i] = (DATA_TYPE)0;
       y_1[i] = (DATA_TYPE) ((i + 3) % n) / n;
       y_2[i] = (DATA_TYPE) ((i + 4) % n) / n;
       for (j = 0; j < n; j++)
@@ -76,12 +76,15 @@ void kernel_mvt(int n,
   int i, j;
 
 #pragma scop
-  for (i = 0; i < _PB_N; i++)
-    for (j = 0; j < _PB_N; j++)
+  for (j = 0; j < _PB_N; j++) {
+    #pragma clang loop vectorize_width(4)
+    for (i = 0; i < _PB_N; i++) {
       x1[i] = x1[i] + A[i][j] * y_1[j];
-  for (i = 0; i < _PB_N; i++)
-    for (j = 0; j < _PB_N; j++)
+//  for (i = 0; i < _PB_N; i++)
+//    for (j = 0; j < _PB_N; j++)
       x2[i] = x2[i] + A[j][i] * y_2[j];
+    }
+  }
 #pragma endscop
 
 }
