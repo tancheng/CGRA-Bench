@@ -56,8 +56,8 @@ void kernel(float data_real[],float data_imag[], float coef_real[],
     for (j = 0; j < groupsPerStage; ++j) {
       Wr = coef_real[(1<<i)-1+j];
       Wi = coef_imag[(1<<i)-1+j];
-#pragma clang loop vectorize(enable) vectorize_width(4)
-//#pragma clang loop vectorize(disable)
+#pragma clang loop vectorize(enable) vectorize_width(4) unroll_count(4)
+//#pragma clang loop vectorize(disable) unroll_count(4)
       for (k = 0; k < buttersPerGroup; ++k) {
         temp_real = Wr * data_real[2*j*buttersPerGroup+buttersPerGroup+k] -
                     Wi * data_imag[2*j*buttersPerGroup+buttersPerGroup+k];

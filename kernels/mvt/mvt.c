@@ -13,6 +13,7 @@
 
 
 /* Array initialization. */
+__attribute__((noinline))
 static
 void init_array(int n,
 		DATA_TYPE POLYBENCH_1D(x1,N,n),
@@ -37,6 +38,7 @@ void init_array(int n,
 
 /* DCE code. Must scan the entire live-out data.
    Can be used also to check the correctness of the output. */
+__attribute__((noinline))
 static
 void print_array(int n,
 		 DATA_TYPE POLYBENCH_1D(x1,N,n),
@@ -65,6 +67,7 @@ void print_array(int n,
 
 /* Main computational kernel. The whole function will be timed,
    including the call and return. */
+__attribute__((noinline))
 static
 void kernel_mvt(int n,
 		DATA_TYPE POLYBENCH_1D(x1,N,n),
@@ -76,17 +79,16 @@ void kernel_mvt(int n,
   int i, j;
 
 #pragma scop
-  for (j = 0; j < _PB_N; j++) {
-    #pragma clang loop vectorize_width(4)
-    for (i = 0; i < _PB_N; i++) {
+  #pragma clang loop unroll_count(1)
+  for (j = 0; j < N; j++) {
+    // #pragma clang loop unroll_count(1) vectorize(disable)
+    #pragma clang loop unroll_count(1) vectorize_width(4)
+    for (i = 0; i < N; i++) {
       x1[i] = x1[i] + A[i][j] * y_1[j];
-//  for (i = 0; i < _PB_N; i++)
-//    for (j = 0; j < _PB_N; j++)
       x2[i] = x2[i] + A[j][i] * y_2[j];
     }
   }
 #pragma endscop
-
 }
 
 

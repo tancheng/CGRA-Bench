@@ -70,9 +70,9 @@ int kernel(int ni, int nj, int nk,
 
   int total = NI * NJ;
   int out = 0;
-  // #pragma clang loop unroll_count(2) vectorize(disable)
-  // #pragma clang loop unroll_count(1) vectorize_width(4)
-  #pragma clang loop vectorize_width(4)
+  // #pragma clang loop unroll_count(4) vectorize(disable)
+  #pragma clang loop unroll_count(1) vectorize_width(4)
+  //#pragma clang loop vectorize_width(4)
   for (x = 0; x < total; x++) {
     i = x / NJ;
     j = x % NJ;

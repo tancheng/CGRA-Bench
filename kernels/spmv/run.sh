@@ -1,1 +1,1 @@
-opt-12 --loop-unroll --unroll-count=8 -load ../../build/mapper/libmapperPass.so -mapperPass spmv.bc
+opt-12 -load ../../../cgra-mapper/build/src/libmapperPass.so -mapperPass kernel.bc

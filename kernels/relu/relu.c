@@ -55,8 +55,8 @@ void kernel(int ni, int nj, int nk,
 {
   int x = 0, i = 0, j = 0, k = 0;
   int total = NI * NJ;
-  //#pragma clang loop vectorize(disable)
-  #pragma clang loop vectorize(enable) vectorize_width(4)
+  #pragma clang loop vectorize(disable) unroll_count(4)
+  // #pragma clang loop vectorize(enable) vectorize_width(4) unroll_count(4)
   for (x = 0; x < total; x++) {
     i = x / NJ;
     j = x % NJ;

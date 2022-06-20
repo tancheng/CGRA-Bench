@@ -34,7 +34,7 @@ void kernel(float input[], float output[], float coefficient[])
 {
   int i;
   float sum = 0.0;
-  #pragma clang loop vectorize_width(4)
+  #pragma clang loop unroll_count(4) vectorize_width(4)
   for (i = 0; i < NTAPS; ++i) {
     sum += input[i] * coefficient[i];
   }

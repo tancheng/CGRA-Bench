@@ -1,1 +1,1 @@
-opt -load ../../../cgra-mapper/build/mapper/libmapperPass.so -mapperPass fir.bc
+opt-12 -load ../../../cgra-mapper/build/src/libmapperPass.so -mapperPass kernel.bc

@@ -72,7 +72,8 @@ void kernel(int ni, int nj, int nk,
 //#pragma scop
   for (i = 0; i < _PB_NI; i++) {
     for (k = 0; k < _PB_NK; k++) {
-       #pragma clang loop vectorize_width(4)
+       #pragma clang loop vectorize(disable) unroll_count(4)
+       // #pragma clang loop vectorize_width(4) unroll_count(4)
        for (j = 0; j < _PB_NJ; j++)
 	  C[i][j] += A[i][k] * B[k][j];
     }

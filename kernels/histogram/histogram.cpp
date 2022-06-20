@@ -35,7 +35,7 @@ void kernel(float input[], int histogram[]) {
   float dmin = (float)MIN;
   float delt = (float)(MAX - dmin);
 
-  #pragma clang loop vectorize(enable) vectorize_width(4)
+  #pragma clang loop vectorize(enable) vectorize_width(4) unroll_count(4)
   for (i = 0; i < DATA_LEN; i++) {
     float r = BUCKET_LEN * (input[i] - dmin) / delt;
     int b = (int)(r);
