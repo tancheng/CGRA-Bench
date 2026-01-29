@@ -29,9 +29,9 @@ int main() {
 void kernel(int input[], int output[]) {
   for (int i = 0; i < N; ++i) {
     if (input[i] > 0) {
-      output[i] += input[i];
+      output[i] = input[i];
     } else {
-      output[i] += 0;
+      output[i] = 0;
     }
   }
 }
